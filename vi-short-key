@@ -1,0 +1,47 @@
+Normal Mode Commands (for navigating and manipulating text):
+
+Moving the Cursor:
+  h: Move left
+  j: Move down
+  k: Move up
+  l: Move right
+Jumping:
+  w: Move forward to the beginning of a word
+  b: Move backward to the beginning of a word
+  e: Move to the end of a word
+  0: Move to the beginning of a line
+  $: Move to the end of a line
+  gg: Move to the beginning of the file
+  G: Move to the end of the file
+<line number>
+  G: Move to a specific line number
+Inserting and Editing:
+  i: Insert before the cursor
+  I: Insert at the beginning of the line
+  a: Append after the cursor
+  A: Append at the end of the line
+  o: Open a new line below the current line
+  O: Open a new line above the current line
+  r: Replace the character under the cursor
+  x: Delete the character under the cursor
+  dd: Delete the current line
+  yy: Copy (yank) the current line
+  p: Paste after the cursor
+Undo and Redo:
+  u: Undo
+  Ctrl + r: Redo
+Searching:
+  /: Search forward
+  n: Go to the next search result
+  N: Go to the previous search result
+Exiting:
+  :w: Write (save) the file
+  :q: Quit (close) the file
+  :wq or ZZ: Write and quit
+Command-Line Mode (for entering commands):
+  :: Enter command-line mode
+  :q: Quit
+  :w: Write (save)
+  :wq or ZZ: Write and quit
+  :q!: Quit without saving (force quit)
+  :e filename: Open a new file
