@@ -1,0 +1,24 @@
+based on sql tables status pending jar run
+#!/bin/bash
+
+# Database credentials and connection details
+DB_USER="your_db_user"
+DB_PASSWORD="your_db_password"
+DB_NAME="your_db_name"
+
+# SQL query to check status_table
+SQL_QUERY="SELECT status FROM status_table WHERE ...;"
+
+# Execute SQL query and capture the result
+STATUS=$(mysql -u$DB_USER -p$DB_PASSWORD -D $DB_NAME -se "$SQL_QUERY")
+
+# Check if status is "pending"
+if [ "$STATUS" = "pending" ]; then
+    # Kill previous Java process
+    pkill -f "java -jar your_java_app.jar"
+    
+    # Run Java jar file
+    java -jar your_java_app.jar &
+else
+    echo "Status is not pending. Exiting."
+fi
