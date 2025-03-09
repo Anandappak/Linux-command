@@ -1,0 +1,31 @@
+.
+#!/bin/bash
+
+# API endpoints
+TOKEN_API="https://example.com/get-token"
+DATA_API="https://example.com/get-details"
+
+# Credentials for token API (if required)
+USERNAME="your_username"
+PASSWORD="your_password"
+
+# Fetch token
+TOKEN=$(curl -s -X POST "$TOKEN_API" -d "username=$USERNAME&password=$PASSWORD" | jq -r '.token')
+
+# Check if token retrieval was successful
+if [ -z "$TOKEN" ]; then
+  echo "Failed to retrieve token"
+  exit 1
+fi
+
+# Read names from file and fetch details asynchronously
+while IFS= read -r name; do
+  curl -s -X GET "$DATA_API" \
+    -H "Authorization: Bearer $TOKEN" \
+    -H "Content-Type: application/json" \
+    --data "{\"name\": \"$name\"}" &
+done < names.txt
+
+# Wait for all background jobs to finish
+wait
+echo "All requests completed."
